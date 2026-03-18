@@ -1,0 +1,50 @@
+database:
+  # type is auto-derived from SQL_DSN in most deployments
+  type: sqlite
+  dsn: ""
+  sqlite_path: /data/one-api.db
+
+sources:
+  - type: models_dev
+    url: https://models.dev/api.json
+    timeout: 30s
+    enabled: true
+
+  # Example: OpenRouter pricing endpoint
+  # - type: openrouter
+  #   url: https://openrouter.ai/api/v1/models
+  #   timeout: 30s
+  #   enabled: true
+  #   headers:
+  #     Authorization: Bearer ${OPENROUTER_API_KEY}
+
+  # Example: another NewAPI instance exposing ratio_config
+  # - type: newapi_ratio
+  #   url: https://example.com/api/ratio_config
+  #   timeout: 15s
+  #   enabled: false
+
+  # Example: another NewAPI instance exposing pricing
+  # - type: newapi_pricing
+  #   url: https://example.com/api/pricing
+  #   timeout: 15s
+  #   enabled: false
+
+sync:
+  interval: 24h
+  once: false
+  dry_run: false
+  preserve_unmentioned: true
+
+currency:
+  target_currency: USD
+  exchange_rate: 1.0
+  price_multiplier: 1.0
+
+filter:
+  include: []
+  exclude: []
+
+logging:
+  level: info
+  json: false
